@@ -3,7 +3,23 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --color-primary: #5867e1;
+  --color-secondary: #2a2a2a;
+}
+
+::selection {
+  background-color: #5867e1;
+  color: #f7f7f7;
+}
+
+.work-span:nth-child(4n + 2),
+.work-span:nth-child(4n + 3) {
+  grid-column: span 6;
+}
+
+.dotted-border{
+  background-image: linear-gradient(to right, black 33%, rgba(255,255,255,0) 0%);
+  background-position: bottom;
+  background-size:3px 1px;
+  background-repeat: repeat-x;
 }
