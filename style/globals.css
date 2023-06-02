@@ -16,10 +16,3 @@
 .work-span:nth-child(4n + 3) {
   grid-column: span 6;
 }
-
-.dotted-border{
-  background-image: linear-gradient(to right, black 33%, rgba(255,255,255,0) 0%);
-  background-position: bottom;
-  background-size:3px 1px;
-  background-repeat: repeat-x;
-}

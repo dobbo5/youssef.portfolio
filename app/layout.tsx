@@ -1,24 +1,25 @@
-import './globals.css'
+import '../style/globals.css'
 import clsx from 'clsx'
 import { JetBrains_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 
 import { Menu } from '@/components/global/Menu'
+import { Footer } from '@/components/global/Footer'
 
 const NnNouvelleGrotesk = localFont({
   src: [
     {
-      path: '../public/fonts/nn-nouvelle-grotesk/NNNouvelleGroteskSTD-Normal.otf',
+      path: '../assets/fonts/nn-nouvelle-grotesk/NNNouvelleGroteskSTD-Normal.otf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../public/fonts/nn-nouvelle-grotesk/NNNouvelleGroteskSTD-Medium.otf',
+      path: '../assets/fonts/nn-nouvelle-grotesk/NNNouvelleGroteskSTD-Medium.otf',
       weight: '500',
       style: 'normal',
     },
     {
-      path: '../public/fonts/nn-nouvelle-grotesk/NNNouvelleGroteskSTD-Bold.otf',
+      path: '../assets/fonts/nn-nouvelle-grotesk/NNNouvelleGroteskSTD-Bold.otf',
       weight: '600',
       style: 'normal',
     },
@@ -58,6 +59,7 @@ export default function RootLayout({
         <main className="mx-auto max-w-[120rem] px-[clamp(1rem,6vw,6rem)]">
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   )

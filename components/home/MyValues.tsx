@@ -1,38 +1,66 @@
+import { gql } from '@apollo/client'
+
+import { getDataFromGql } from '@/lib/getDataFromGql'
 import { Heading } from '@/components/kit/Heading'
 import { Text } from '@/components/kit/Text'
 
-const values = [
-  {
-    title: 'Simplicité',
-    content:
-      'Lorem ipsum dolor sit amet. Aut saepe recusandae et nisi dignissimos ut laboriosam reprehenderit.',
-  },
-  {
-    title: 'Technicités',
-    content:
-      'Lorem ipsum dolor sit amet. Aut saepe recusandae et nisi dignissimos ut laboriosam reprehenderit.',
-  },
-  {
-    title: 'Efficacité',
-    content:
-      'Lorem ipsum dolor sit amet. Aut saepe recusandae et nisi dignissimos ut laboriosam reprehenderit.',
-  },
-  {
-    title: 'Efficacité',
-    content:
-      'Lorem ipsum dolor sit amet. Aut saepe recusandae et nisi dignissimos ut laboriosam reprehenderit.',
-  },
-]
+// Define types for GraphQL data
+interface MyValue {
+  title: string
+  content: string
+}
+interface MyValueResponse {
+  data: {
+    myValue: {
+      data: {
+        attributes: {
+          my_values: MyValue[]
+        }
+      }
+    }
+  }
+}
 
-export function MyValues() {
+const GetValuesQuery = gql`
+  query values {
+    myValue {
+      data {
+        attributes {
+          my_values {
+            uuid
+            title
+            content
+          }
+        }
+      }
+    }
+  }
+`
+
+export async function MyValues() {
+  const response: MyValueResponse = await getDataFromGql(GetValuesQuery)
+
+  const {
+    data: {
+      myValue: {
+        data: {
+          attributes: { my_values },
+        },
+      },
+    },
+  } = response
+
   return (
-    <section>
+    <section className="py-40">
       <Heading as="h3" variant="section-1-large">
         Mes valeurs
       </Heading>
       <div>
-        {values.map((value) => (
-          <dl key={value.title} className="flex py-16">
+        {my_values.map((value: MyValue, index) => (
+          <dl
+            key={`${value.title}-${index}`}
+            className="flex border-b border-neutral-100 py-16"
+          >
             <dt className="w-full">
               <Heading as="h5" variant="section-2">
                 {value.title}
