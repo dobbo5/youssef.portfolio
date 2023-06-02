@@ -1,8 +1,8 @@
-import { gql } from '@apollo/client'
+import { gql } from "@apollo/client"
 
-import { getDataFromGql } from '@/lib/getDataFromGql'
-import { Heading } from '@/components/kit/Heading'
-import { Text } from '@/components/kit/Text'
+import { getDataFromGql } from "@/lib/getDataFromGql"
+import { Heading } from "@/components/kit/Heading"
+import { Text } from "@/components/kit/Text"
 
 // Define types for GraphQL data
 interface MyValue {
@@ -27,7 +27,6 @@ const GetValuesQuery = gql`
       data {
         attributes {
           my_values {
-            uuid
             title
             content
           }
