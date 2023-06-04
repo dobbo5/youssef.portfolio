@@ -2,13 +2,13 @@ import { componentsMap } from "./ComponentsMap"
 
 export function Sections({ SectionsData }) {
   return (
-    <div>
+    <>
       {SectionsData.map((section, index) => {
         const Component = componentsMap[section.__typename]
-        if (!Component) return <div>Nothing</div>
+        if (!Component) return null
 
-        return <Component key={index} />
+        return <Component key={index} {...section} />
       })}
-    </div>
+    </>
   )
 }

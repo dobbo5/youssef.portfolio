@@ -17,6 +17,7 @@ export function Heading({
     | "section-3"
     | "hero"
     | "body"
+    | "info-name"
 } & React.HTMLAttributes<HTMLHeadingElement>) {
   //Space
   const baseStyle = "leading-tight tracking-wide font-medium"
@@ -24,7 +25,8 @@ export function Heading({
   const variants = {
     hero: "text-[clamp(3rem,calc(4vw+2rem),8rem)]",
     "section-1-large": "text-9xl uppercase text-center",
-    "section-1-medium": "text-6xl",
+    "section-1-medium": "text-6xl uppercase",
+    "info-name": "text-[clamp(3rem,calc(4vw+1.5rem),6rem)] uppercase",
     "section-2": "text-4xl",
     "section-3": "text-2xl",
     body: "uppercase",

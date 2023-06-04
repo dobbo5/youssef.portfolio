@@ -1,4 +1,3 @@
-import { Suspense } from "react"
 import Image from "next/image"
 import { gql } from "@apollo/client"
 
@@ -47,6 +46,42 @@ const GetProject = gql`
           }
           Sections {
             __typename
+            ... on ComponentLayoutsKeyDrivers {
+              key_drivers {
+                title
+                content
+              }
+            }
+            ... on ComponentLayoutsPersonnas {
+              Personnas {
+                infos {
+                  image {
+                    ...ImageFragment
+                  }
+                  name
+                  age
+                  position
+                  city
+                }
+                contents {
+                  title
+                  content
+                }
+              }
+            }
+            ... on ComponentLayoutsTextsAndImage {
+              title
+              contents {
+                col_span
+                contents {
+                  title
+                  content
+                }
+              }
+              image {
+                ...ImageFragment
+              }
+            }
           }
         }
       }
@@ -86,7 +121,7 @@ function ProjectBody({ bodyData }) {
   const { intro: introData, Sections: SectionsData } = bodyData
 
   return (
-    <article className="flex flex-col gap-8 rounded-md border border-neutral-100 p-16">
+    <article className="flex flex-col gap-16 rounded-md border border-neutral-100 p-16">
       <Intro introData={introData} />
 
       <Sections SectionsData={SectionsData} />

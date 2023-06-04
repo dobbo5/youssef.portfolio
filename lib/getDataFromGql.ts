@@ -5,7 +5,6 @@ export async function getDataFromGql(
   gqlData: DocumentNode,
   variables: any = undefined
 ) {
-  // console.log(variables)
   const data = await fetch(process.env.GRAPHQL_API_URL!, {
     method: "POST",
     headers: {
