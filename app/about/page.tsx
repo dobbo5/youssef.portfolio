@@ -56,7 +56,7 @@ export default async function AboutPage() {
 
   return (
     <>
-      <Heading as="h3" variant="section-1-large" className="py-64">
+      <Heading as="h3" variant="section-1-large" className="py-40">
         Mes infos
       </Heading>
       <MyInfos my_infos={my_infos} />

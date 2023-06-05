@@ -38,6 +38,9 @@ module.exports = {
         900: '#2a2a2a', // this is the default
         950: '#1a1a1a',
       },
+      danger: {
+        700:' #b91c1c',
+      }
     },
     extend: {
       backgroundImage: {
