@@ -21,13 +21,14 @@ export type WorksResponse = {
 export type WorkData = {
   attributes: {
     casestudy_type: string
+    col_span: string
     project_type: string
     handle: string
+    cover_image: ImageType
     intro: {
       name: string
       role: string
       year: string
-      image: ImageType
     }
   }
 }
