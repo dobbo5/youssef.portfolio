@@ -5,7 +5,9 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import thankYou from "@/public/thank-you.webp"
+import { AnimatePresence, motion as m } from "framer-motion"
 
+import { easeOutCirc } from "@/lib/animation"
 import { Button } from "@/components/kit/Button"
 import { Heading } from "@/components/kit/Heading"
 import { Input } from "@/components/kit/Input"
@@ -65,146 +67,137 @@ export function ContactForm() {
     }
   }
 
-  async function generateMessage() {
-    const res = await fetch("/api/generate-message", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-
-    if (res.status === 200) {
-      const { message } = await res.json()
-      setFormData({ ...formData, message })
-    } else {
-      setError(
-        "Un problème est survenu lors de la génération du message. Veuillez réessayer plus tard."
-      )
-    }
-  }
-
   return (
     <div className="mx-auto max-w-screen-md">
-      {submitted ? (
-        <div className="flex flex-col items-center gap-8">
-          <Heading as="h3" variant="section-1-medium" className="text-center">
-            Merci pour votre message !
-          </Heading>
-          <Button href="/" variant="primary">
-            Retourner à l&apos;accueil
-          </Button>
-          <Image
-            src={thankYou}
-            alt="Thank you gif from the succession TV show"
-            width={480}
-            height={270}
-            className="rounded-md"
-          />
-        </div>
-      ) : (
-        <form onSubmit={onSubmit} className="relative grid grid-cols-2 gap-4">
-          {error && (
-            <p className="absolute top-[-3rem] col-span-2 text-danger-700">
-              {error}
-            </p>
-          )}
-          <Input
-            label="Prénom"
-            placeholder="ex : Marcel"
-            id="firstName"
-            name="firstName"
-            type="text"
-            aria-label="prénom"
-            required
-            autoComplete="given-name"
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-          <Input
-            label="Entreprise (Optionnel)"
-            placeholder="ex : Acme Corp"
-            id="company"
-            name="company"
-            type="text"
-            aria-label="company"
-            autoComplete="company"
-            value={formData.company}
-            onChange={handleChange}
-          />
-          <Input
-            label="Email"
-            placeholder="ex : email@gmail.com"
-            id="email"
-            name="email"
-            type="email"
-            aria-label="email"
-            autoComplete="email"
-            required
-            value={formData.email}
-            onChange={handleChange}
-          />
-          <Input
-            label="Téléphone (Optionnel)"
-            placeholder="ex : +33762645423"
-            id="tel"
-            name="tel"
-            type="tel"
-            aria-label="téléphone"
-            autoComplete="tel-national"
-            value={formData.tel}
-            onChange={handleChange}
-          />
-          <Input
-            label="Objet"
-            placeholder="ex : Recrutement, mission freelance..."
-            className="col-span-2"
-            id="object"
-            name="object"
-            aria-label="object"
-            required
-            value={formData.object}
-            onChange={handleChange}
-          />
-          <Button
-            type="Button"
-            variant="inline"
-            className="justify-self-start"
-            onClick={generateMessage}
+      <AnimatePresence>
+        {submitted ? (
+          <m.div
+            key="thank-you"
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.3 }}
+            className="flex flex-col items-center gap-8"
           >
-            Pré-générer un message
-          </Button>
-          <Input
-            as="textarea"
-            label="Message"
-            placeholder="Your message..."
-            className="col-span-2"
-            id="message"
-            name="message"
-            aria-label="message"
-            required
-            value={formData.message}
-            onChange={handleChange}
-          />
+            <Heading as="h3" variant="section-1-medium" className="text-center">
+              Merci pour votre message !
+            </Heading>
+            <Button href="/" variant="primary">
+              Retourner à l&apos;accueil
+            </Button>
+            <Image
+              src={thankYou}
+              alt="Thank you gif from the succession TV show"
+              width={480}
+              height={270}
+              className="rounded-md"
+            />
+          </m.div>
+        ) : (
+          <m.form
+            key="form"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 50, opacity: 0 }}
+            transition={{ duration: 0.3, ease: easeOutCirc }}
+            onSubmit={onSubmit}
+            className="relative grid grid-cols-1 gap-4 sm:grid-cols-2"
+          >
+            {error && (
+              <p className="absolute top-[-3rem] text-danger-700 sm:col-span-2">
+                {error}
+              </p>
+            )}
+            <Input
+              label="Prénom"
+              placeholder="ex : Marcel"
+              id="firstName"
+              name="firstName"
+              type="text"
+              aria-label="prénom"
+              required
+              autoComplete="given-name"
+              value={formData.firstName}
+              onChange={handleChange}
+            />
+            <Input
+              label="Entreprise (Optionnel)"
+              placeholder="ex : Acme Corp"
+              id="company"
+              name="company"
+              type="text"
+              aria-label="company"
+              autoComplete="company"
+              value={formData.company}
+              onChange={handleChange}
+            />
+            <Input
+              label="Email"
+              placeholder="ex : email@gmail.com"
+              id="email"
+              name="email"
+              type="email"
+              aria-label="email"
+              autoComplete="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+            />
+            <Input
+              label="Téléphone (Optionnel)"
+              placeholder="ex : +33762645423"
+              id="tel"
+              name="tel"
+              type="tel"
+              aria-label="téléphone"
+              autoComplete="tel-national"
+              value={formData.tel}
+              onChange={handleChange}
+            />
+            <Input
+              label="Objet"
+              placeholder="ex : Recrutement, mission freelance..."
+              className="sm:col-span-2"
+              id="object"
+              name="object"
+              aria-label="object"
+              required
+              value={formData.object}
+              onChange={handleChange}
+            />
 
-          <Button
-            type="submit"
-            variant="primary"
-            className="justify-self-start"
-          >
-            Envoyer
-          </Button>
-          <Text variant="sub-mono" className="justify-self-end">
-            Email envoyé à{" "}
-            <Link
-              href="mailto:youssefdouieb@hotmail.com"
-              className="underline hover:text-primary-600"
+            <Input
+              as="textarea"
+              label="Message"
+              placeholder="Your message..."
+              className="sm:col-span-2"
+              id="message"
+              name="message"
+              aria-label="message"
+              required
+              value={formData.message}
+              onChange={handleChange}
+            />
+
+            <Button
+              type="submit"
+              variant="primary"
+              className="justify-self-start"
             >
-              YoussefDouieb@hotmail.com
-            </Link>
-          </Text>
-        </form>
-      )}
+              Envoyer
+            </Button>
+            <Text variant="sub-mono" className="justify-self-end">
+              Email envoyé à{" "}
+              <Link
+                href="mailto:youssefdouieb@hotmail.com"
+                className="underline hover:text-primary-600"
+              >
+                YoussefDouieb@hotmail.com
+              </Link>
+            </Text>
+          </m.form>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

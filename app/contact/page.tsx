@@ -1,13 +1,13 @@
-import { Heading } from "@/components/kit/Heading"
+import { HeadingAppear } from "@/components/animations/HeadingAppear"
 
 import { ContactForm } from "./ContactForm"
 
 export default function ContactPage() {
   return (
     <>
-      <Heading as="h3" variant="section-1-large" className="py-40">
+      <HeadingAppear as="h3" variant="section-1-large">
         Contact
-      </Heading>
+      </HeadingAppear>
       <ContactForm />
     </>
   )

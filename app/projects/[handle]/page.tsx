@@ -4,6 +4,7 @@ import { gql } from "@apollo/client"
 import { ProjectResponse } from "@/types/gqltypes"
 import { IMAGE_FRAGMENT } from "@/lib/fragments"
 import { getDataFromGql } from "@/lib/getDataFromGql"
+import { HeadingAppear } from "@/components/animations/HeadingAppear"
 import { Accordion } from "@/components/global/Accordion"
 import { Button } from "@/components/kit/Button"
 import { Heading } from "@/components/kit/Heading"
@@ -101,17 +102,24 @@ export default async function ProjectPage({ params: { handle } }) {
   const { attributes: bodyData } = data[0]
 
   return (
-    <div className="my-64 flex flex-col gap-6">
+    <div className="my-8 flex flex-col gap-6 sm:my-64">
       <header className="flex flex-col items-start gap-4">
         <Tag>{bodyData.intro.role}</Tag>
-        <div className="flex w-full items-center justify-between">
-          <Heading as="h1" variant="section-1-medium">
+        <div className="flex w-full flex-col items-center justify-between sm:flex-row">
+          <HeadingAppear
+            as="h1"
+            variant="section-1-medium"
+            className="my-8 sm:my-0"
+          >
             {bodyData.intro.name}
-          </Heading>
-          <Button>Voir le siteweb</Button>
+          </HeadingAppear>
+          {bodyData.intro.link && (
+            <Button target="_blank" href={bodyData.intro.link}>
+              Voir le siteweb
+            </Button>
+          )}
         </div>
       </header>
-
       <ProjectBody bodyData={bodyData} />
     </div>
   )
@@ -121,9 +129,8 @@ function ProjectBody({ bodyData }) {
   const { intro: introData, Sections: SectionsData } = bodyData
 
   return (
-    <article className="flex flex-col gap-16 rounded-md border border-neutral-100 p-16">
+    <article className="flex flex-col gap-8 rounded-md border border-neutral-100 p-4 sm:gap-16 sm:p-16">
       <Intro introData={introData} />
-
       <Sections SectionsData={SectionsData} />
     </article>
   )
@@ -144,15 +151,16 @@ function Intro({ introData }) {
   } = introData
 
   return (
-    <section className="grid grid-cols-4 gap-16">
+    <section className="grid grid-cols-1 gap-16 sm:grid-cols-4">
       <Image
         src={url}
         alt={`screenshot of ${introData.name}`}
         width={width}
         height={height}
-        className="col-span-4 rounded-md shadow-md shadow-neutral-100"
+        priority={true}
+        className="rounded-lg shadow-custom sm:col-span-4"
       />
-      <div className="col-span-2 flex flex-col gap-8">
+      <div className="flex flex-col gap-8 sm:col-span-4 md:col-span-2">
         {briefs.map(({ title, content }) => (
           <div key={title}>
             <Heading as="h4" variant="body" className="mb-4">
@@ -180,7 +188,8 @@ function Intro({ introData }) {
           ))}
         </ul>
       </div>
-      <div className="col-span-4 grid grid-cols-4 gap-16 border-t border-neutral-200">
+      {tech_stack.length > 0 && <TechStack techStackData={tech_stack} />}
+      <div className="grid grid-cols-1 gap-x-16 border-t border-neutral-200 sm:col-span-4 md:grid-cols-4">
         <Heading
           as="h3"
           variant="section-1-medium"
@@ -193,5 +202,29 @@ function Intro({ introData }) {
         </div>
       </div>
     </section>
+  )
+}
+
+function TechStack({ techStackData }) {
+  return (
+    <div className="sm:col-span-2 sm:col-start-3">
+      <Heading as="h4" variant="body" className="mb-4">
+        TechStack
+      </Heading>
+      <ul className="grid grid-cols-3 gap-4 sm:grid-cols-4">
+        {techStackData.map(({ title, image }) => (
+          <li className="flex flex-col items-center justify-center gap-2 rounded-md border border-neutral-100 p-2">
+            <Image
+              src={image.data.attributes.url}
+              alt={title}
+              width={image.data.attributes.width}
+              height={image.data.attributes.height}
+              className="aspect-square rounded-sm object-cover"
+            />
+            <Text variant="sub-mono">{title}</Text>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }

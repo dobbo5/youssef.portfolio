@@ -1,3 +1,4 @@
+import { Divider } from "@/components/animations/Divider"
 import { Heading } from "@/components/kit/Heading"
 
 export function ProjectSection({
@@ -18,7 +19,7 @@ export function ProjectSection({
 
         {children}
       </section>
-      <div className="h-px w-full bg-neutral-100" />
+      <Divider />
     </>
   )
 }

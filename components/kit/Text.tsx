@@ -13,7 +13,7 @@ export function Text({
   const baseStyleSans = "font-normal tracking-wide max-w-prose text-neutral-700"
 
   const variants = {
-    "paragraph-large": `${baseStyleSans} text-xl`,
+    "paragraph-large": `${baseStyleSans} sm:text-xl`,
     paragraph: `${baseStyleSans}`,
     "sub-mono": "font-mono uppercase text-sm text-neutral-500",
   }

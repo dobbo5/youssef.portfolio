@@ -4,6 +4,9 @@ import { getDataFromGql } from "@/lib/getDataFromGql"
 import { Heading } from "@/components/kit/Heading"
 import { Text } from "@/components/kit/Text"
 
+import { Divider } from "../animations/Divider"
+import { DesignXcode } from "./DesignXcode"
+
 // Define types for GraphQL data
 interface MyValue {
   title: string
@@ -51,24 +54,22 @@ export async function MyValues() {
 
   return (
     <section className="py-40">
-      <Heading as="h3" variant="section-1-large">
-        Mes valeurs
-      </Heading>
+      <DesignXcode />
       <div>
         {my_values.map((value: MyValue, index) => (
-          <dl
-            key={`${value.title}-${index}`}
-            className="flex border-b border-neutral-100 py-16"
-          >
-            <dt className="w-full">
-              <Heading as="h5" variant="section-2">
-                {value.title}
-              </Heading>
-            </dt>
-            <dd className="w-full">
-              <Text>{value.content}</Text>
-            </dd>
-          </dl>
+          <div key={`${value.title}-${index}`}>
+            <dl className="flex flex-col gap-y-4 py-8 sm:flex-row sm:py-16">
+              <dt className="w-full">
+                <Heading as="h5" variant="section-2">
+                  {value.title}
+                </Heading>
+              </dt>
+              <dd className="w-full">
+                <Text>{value.content}</Text>
+              </dd>
+            </dl>
+            <Divider />
+          </div>
         ))}
       </div>
     </section>

@@ -1,6 +1,6 @@
 import { componentsMap } from "./ComponentsMap"
 
-export function Sections({ SectionsData }) {
+export function Sections({ SectionsData }: { SectionsData: object[] }) {
   return (
     <>
       {SectionsData.map((section, index) => {
