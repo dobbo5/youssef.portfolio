@@ -2,6 +2,7 @@ import "../style/globals.css"
 
 import { JetBrains_Mono } from "next/font/google"
 import localFont from "next/font/local"
+import { Analytics } from "@vercel/analytics/react"
 import clsx from "clsx"
 
 import { Footer } from "@/components/global/Footer"
@@ -59,6 +60,7 @@ export default function RootLayout({
         <Menu />
         <main className="mx-auto max-w-[calc(20rem+60vw)] px-[clamp(1rem,5vw,4rem)]">
           {children}
+          <Analytics />
         </main>
         <Footer />
       </body>
