@@ -159,6 +159,7 @@ function Intro({ introData }) {
         height={height}
         priority={true}
         className="rounded-lg shadow-custom sm:col-span-4"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
       <div className="flex flex-col gap-8 sm:col-span-4 md:col-span-2">
         {briefs.map(({ title, content }) => (
@@ -220,6 +221,7 @@ function TechStack({ techStackData }) {
               width={image.data.attributes.width}
               height={image.data.attributes.height}
               className="aspect-square rounded-sm object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
             <Text variant="sub-mono">{title}</Text>
           </li>

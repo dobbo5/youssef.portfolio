@@ -62,6 +62,7 @@ function ComponentLayoutsTextsAndImage({ title, contents, image }) {
               alt={title || "screenshot of the project"}
               width={imageData.width}
               height={imageData.height}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
         </div>
@@ -100,6 +101,7 @@ function ComponentLayoutsPersonnas({ Personnas }) {
                   height={imageData.height}
                   alt={"Photo de " + name}
                   className="aspect-square rounded-sm object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <ul className="sm:text-lg">
                   <li className="font-medium uppercase">{name}</li>

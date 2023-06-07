@@ -91,6 +91,7 @@ export function ContactForm() {
               width={480}
               height={270}
               className="rounded-md"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </m.div>
         ) : (
