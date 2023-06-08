@@ -16,9 +16,9 @@ export function DesignXcode() {
       <div ref={ref} className="overflow-hidden">
         <m.span
           className="inline-block"
-          initial={{ y: 150 }}
-          animate={{ y: isInView ? 0 : 150 }}
-          transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.2 }}
+          initial={{ y: 250 }}
+          animate={{ y: isInView ? 0 : 250 }}
+          transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.6 }}
         >
           Design
         </m.span>
@@ -26,17 +26,17 @@ export function DesignXcode() {
       <div className="overflow-hidden">
         <m.span
           className="inline-block text-primary-600"
-          initial={{ y: -150 }}
-          animate={{ y: isInView ? 0 : -150 }}
-          transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.4 }}
+          initial={{ y: -250 }}
+          animate={{ y: isInView ? 0 : -250 }}
+          transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.6 }}
         >
           X
         </m.span>
         <m.span
           className="inline-block"
-          initial={{ y: -150 }}
-          animate={{ y: isInView ? 0 : -150 }}
-          transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.4 }}
+          initial={{ y: -250 }}
+          animate={{ y: isInView ? 0 : -250 }}
+          transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.6 }}
         >
           CODE
         </m.span>

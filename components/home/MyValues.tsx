@@ -53,7 +53,7 @@ export async function MyValues() {
   } = response
 
   return (
-    <section className="py-40">
+    <section>
       <DesignXcode />
       <div>
         {my_values.map((value: MyValue, index) => (
