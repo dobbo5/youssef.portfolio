@@ -34,8 +34,6 @@ function ComponentLayoutsTextsAndImage({ title, contents, image }) {
     calculatedSpan = (12 - contents.col_span + 12) % 12 || 12
   }
 
-  console.log(imageData)
-
   return (
     <ProjectSection title={title}>
       <div className="flex w-full grid-cols-12 flex-col gap-8 md:grid lg:gap-x-16">

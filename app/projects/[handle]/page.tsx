@@ -211,15 +211,15 @@ function TechStack({ techStackData }) {
       <Heading as="h4" variant="body" className="mb-4">
         TechStack
       </Heading>
-      <ul className="grid grid-cols-3 gap-4 sm:grid-cols-4">
+      <ul className="grid grid-cols-3 gap-4 sm:grid-cols-4 2xl:grid-cols-5">
         {techStackData.map(({ title, image }) => (
-          <li className="flex flex-col items-center justify-center gap-2 rounded-md border border-neutral-100 p-2">
+          <li className="flex flex-col items-center justify-center gap-3 rounded-md border border-neutral-100 p-4">
             <Image
               src={image.data.attributes.url}
               alt={title}
               width={image.data.attributes.width}
               height={image.data.attributes.height}
-              className="aspect-square rounded-sm object-cover"
+              className="aspect-square w-3/4 rounded-sm object-contain"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
             <Text variant="sub-mono">{title}</Text>

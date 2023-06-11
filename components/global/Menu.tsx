@@ -24,7 +24,7 @@ export function Menu() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: easeOutCirc }}
-        className="rounded-lg bg-neutral-500/75 p-1 text-neutral-50 backdrop-blur-lg"
+        className="rounded-lg bg-neutral-900/50 p-1 text-neutral-50 backdrop-blur-md"
       >
         <m.ul
           onHoverEnd={() => setActiveIndex(currentPathIndex)}
