@@ -34,6 +34,8 @@ function ComponentLayoutsTextsAndImage({ title, contents, image }) {
     calculatedSpan = (12 - contents.col_span + 12) % 12 || 12
   }
 
+  console.log(imageData)
+
   return (
     <ProjectSection title={title}>
       <div className="flex w-full grid-cols-12 flex-col gap-8 md:grid lg:gap-x-16">
@@ -79,7 +81,7 @@ function MediaRender({ imageData }) {
         alt="Project Video"
         width={imageData.width || 1920}
         height={imageData.height || 1080}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
     )
   } else if (imageData.mime.includes("video")) {
@@ -123,7 +125,7 @@ function ComponentLayoutsPersonnas({ Personnas }) {
                   height={imageData.height}
                   alt={"Photo de " + name}
                   className="aspect-square rounded-sm object-cover"
-                  // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <ul className="sm:text-lg">
                   <li className="font-medium uppercase">{name}</li>
