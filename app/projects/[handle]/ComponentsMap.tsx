@@ -23,33 +23,38 @@ function ComponentLayoutsKeyDrivers({ key_drivers }) {
   )
 }
 
-function ComponentLayoutsTextsAndImage({ title, contents, image }) {
+function ComponentLayoutsTextsAndImage({ title, contents, image, video }) {
   const {
     data: { attributes: imageData },
   } = image
 
-  const { contents: contentData, col_span } = contents
+  console.log(contents)
 
-  const calculatedSpan = (12 - col_span + 12) % 12 || 12
+  const calculatedSpan = (12 - contents.col_span + 12) % 12 || 12
 
   return (
     <ProjectSection title={title}>
       <div className="grid grid-cols-12 gap-x-16 gap-y-8">
-        <ul
-          className="flex flex-col gap-8"
-          style={{ gridColumn: `span ${col_span} / span ${col_span}` }}
-        >
-          {contentData.map((content) => {
-            return (
-              <li key={content.title}>
-                <Heading as="h3" variant="body" className="mb-2">
-                  {content.title}
-                </Heading>
-                <TextMarkdown>{content.content}</TextMarkdown>
-              </li>
-            )
-          })}
-        </ul>
+        {contents ? (
+          <ul
+            className="flex flex-col gap-8"
+            style={{
+              gridColumn: `span ${contents.col_span} / span ${contents.col_span}`,
+            }}
+          >
+            {contents.contentData.map((content) => {
+              return (
+                <li key={content.title}>
+                  <Heading as="h3" variant="body" className="mb-2">
+                    {content.title}
+                  </Heading>
+                  <TextMarkdown>{content.content}</TextMarkdown>
+                </li>
+              )
+            })}
+          </ul>
+        ) : null}
+
         <div
           style={{
             gridColumn: `span ${calculatedSpan} / span ${calculatedSpan}`,
