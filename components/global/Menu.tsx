@@ -17,6 +17,7 @@ const menuItems = [
 export function Menu() {
   const [currentPathIndex, setCurrentPathIndex] = useState(0)
   const [activeIndex, setActiveIndex] = useState(0)
+
   return (
     <header className="myflex-col fixed bottom-16 left-1/2 z-50 m-auto translate-x-[-50%] gap-1 rounded font-mono text-xs uppercase tracking-wide sm:bottom-auto sm:top-16 sm:text-base">
       <m.nav
@@ -64,15 +65,18 @@ function ActiveLink({
 }) {
   const pathname = usePathname()
   const isCurrentPath = pathname === href
+  const isActive = index === activeIndex
 
   useEffect(() => {
     if (isCurrentPath) {
       setCurrentPathIndex(index)
+      setActiveIndex(index)
+    } else if (pathname?.includes("projects")) {
+      setCurrentPathIndex(1)
+      setActiveIndex(1)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
-
-  const isActive = index === activeIndex
 
   return (
     <m.li onHoverStart={() => setActiveIndex(index)}>
@@ -84,6 +88,7 @@ function ActiveLink({
           <m.span
             layoutId="menu-bg"
             className="absolute inset-0 -z-10 rounded-md bg-primary-600"
+            transition={{ duration: 0.3, ease: easeOutCirc }}
           />
         ) : null}
         <span>{children}</span>

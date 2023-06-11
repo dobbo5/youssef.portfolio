@@ -57,6 +57,9 @@ module.exports = {
       transitionTimingFunction: {
         "out-quint": "cubic-bezier(0.22, 1, 0.36, 1)",
       },
+      listStyleType: {
+        square: "square",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

@@ -23,14 +23,16 @@ function ComponentLayoutsKeyDrivers({ key_drivers }) {
   )
 }
 
-function ComponentLayoutsTextsAndImage({ title, contents, image, video }) {
+function ComponentLayoutsTextsAndImage({ title, contents, image }) {
   const {
     data: { attributes: imageData },
   } = image
 
-  console.log(contents)
+  let calculatedSpan = 12
 
-  const calculatedSpan = (12 - contents.col_span + 12) % 12 || 12
+  if (contents) {
+    calculatedSpan = (12 - contents.col_span + 12) % 12 || 12
+  }
 
   return (
     <ProjectSection title={title}>
@@ -42,7 +44,7 @@ function ComponentLayoutsTextsAndImage({ title, contents, image, video }) {
               gridColumn: `span ${contents.col_span} / span ${contents.col_span}`,
             }}
           >
-            {contents.contentData.map((content) => {
+            {contents.contents.map((content) => {
               return (
                 <li key={content.title}>
                   <Heading as="h3" variant="body" className="mb-2">
@@ -56,24 +58,39 @@ function ComponentLayoutsTextsAndImage({ title, contents, image, video }) {
         ) : null}
 
         <div
+          className="overflow-hidden rounded-md"
           style={{
             gridColumn: `span ${calculatedSpan} / span ${calculatedSpan}`,
           }}
         >
-          <div className="w-full rounded-lg bg-neutral-200/20 p-2">
-            <Image
-              className="h-auto w-full rounded-md"
-              src={imageData.url}
-              alt={title || "screenshot of the project"}
-              width={imageData.width}
-              height={imageData.height}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </div>
+          <MediaRender imageData={imageData} />
         </div>
       </div>
     </ProjectSection>
   )
+}
+
+function MediaRender({ imageData }) {
+  if (imageData.mime.includes("image")) {
+    return (
+      <Image
+        className="h-auto w-full"
+        src={imageData.url}
+        alt="Project Video"
+        width={imageData.width || 1920}
+        height={imageData.height || 1080}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      />
+    )
+  } else if (imageData.mime.includes("video")) {
+    return (
+      <video autoPlay muted loop>
+        <source src={imageData.url} />
+      </video>
+    )
+  }
+
+  return null
 }
 
 function ComponentLayoutsPersonnas({ Personnas }) {

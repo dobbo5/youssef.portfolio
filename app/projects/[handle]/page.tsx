@@ -72,15 +72,15 @@ const GetProject = gql`
             }
             ... on ComponentLayoutsTextsAndImage {
               title
+              image {
+                ...ImageFragment
+              }
               contents {
                 col_span
                 contents {
                   title
                   content
                 }
-              }
-              image {
-                ...ImageFragment
               }
             }
           }
