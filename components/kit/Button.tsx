@@ -18,12 +18,13 @@ export function Button({
   const Component = props?.href ? Link : as
 
   const baseButton =
-    "font-mono uppercase text-neutral-50 px-4 py-2 rounded-md transition-colors duration-200 ease-in-out"
+    "font-mono uppercase text-neutral-50 px-6 py-3 text-center rounded-md transition-colors duration-200 ease-in-out sm:w-auto w-full"
 
   const variants = {
     primary: baseButton + " bg-primary-600 hover:bg-primary-900",
     secondary: baseButton + " bg-neutral-900 hover:bg-neutral-700",
-    inline: "font-mono uppercase",
+    inline:
+      "font-mono uppercase text-sm sm:text-base underline underline-offset-4 hover:text-primary-600",
   }
 
   const styles = clsx(variants[variant], className)

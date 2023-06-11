@@ -7,36 +7,48 @@ import clsx from "clsx"
 import { AnimatePresence, motion as m } from "framer-motion"
 
 import { WorkData } from "@/types/gqltypes"
+import { easeOutCirc } from "@/lib/animation"
 import { Heading } from "@/components/kit/Heading"
 
 import { Tag } from "../kit/Tag"
 import { Text } from "../kit/Text"
 
-const filtersName = ["all", "detailed", "simple"]
+const filtersName = ["tous", "detailles", "simples"]
 
-export function WorkGrid({ worksData }: { worksData: WorkData[] }) {
+export function WorkGrid({
+  worksData,
+  isHeading,
+}: {
+  worksData: WorkData[]
+  isHeading?: boolean
+}) {
   const [filterData, setFilteredData] = useState<WorkData[]>(worksData)
   const [currentFilter, setCurrentFilter] = useState<string>(filtersName[0])
 
   return (
     <section>
-      <div className="flex w-full items-center justify-between">
-        <Heading as="h3" variant="section-1-medium">
-          Work
-        </Heading>
+      <div className="mb-4 flex w-full flex-wrap items-center justify-between">
+        <div>
+          {isHeading && (
+            <Heading as="h3" variant="section-1-medium">
+              Projets
+            </Heading>
+          )}
+        </div>
         <FilterSwitch
           setFilteredData={setFilteredData}
           worksData={worksData}
           currentFilter={currentFilter}
           setCurrentFilter={setCurrentFilter}
+          filterDataLength={filterData.length}
         />
       </div>
-      <ul className="grid grid-cols-8 gap-4">
+      <ul className="flex flex-col gap-4 lg:grid lg:grid-cols-8">
         <AnimatePresence>
-          {filterData.map((work, index) => {
+          {filterData.map((work) => {
             return (
               <WorkCard
-                key={`${work.attributes.intro.name}-${index}`}
+                key={work.attributes.intro.name}
                 work={work.attributes}
               />
             )
@@ -63,16 +75,18 @@ function WorkCard({ work }) {
   return (
     <m.li
       animate={{ opacity: 1, y: 0 }}
-      initial={{ opacity: 0, y: 50 }}
-      exit={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 20 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.3, ease: easeOutCirc }}
+      key={name}
       layout
-      className="work-span rounded-md border border-neutral-100 bg-neutral-100/25"
+      className="group rounded-md border border-neutral-100 bg-neutral-100/20 "
       style={{ gridColumn: `span ${col_span} / span ${col_span}` }}
     >
       <Link href={`/projects/${handle}`} className="flex h-full flex-col gap-4">
-        <div className="relative flex grow items-start justify-center p-10">
+        <div className="relative flex grow items-start justify-center p-4 xl:p-10">
           <Image
-            className="w-full rounded shadow-custom"
+            className="w-full rounded-lg shadow-custom transition-transform duration-500 ease-out-quint group-hover:scale-105"
             alt="work"
             src={imageUrl}
             height={height}
@@ -102,30 +116,32 @@ function FilterSwitch({
   currentFilter,
   setFilteredData,
   worksData,
+  filterDataLength,
 }: {
   setCurrentFilter: (filterName: string) => void
   setFilteredData: (data: WorkData[]) => void
   currentFilter: string
   worksData: WorkData[]
+  filterDataLength: number
 }) {
   //
   const switchFilter = (filterName: string) => setCurrentFilter(filterName)
 
   useEffect(() => {
-    if (currentFilter === "all") {
+    if (currentFilter === "tous") {
       setFilteredData(worksData)
       return
     }
 
-    const filteredData = worksData.filter((work) =>
+    const newFilteredData = worksData.filter((work) =>
       work.attributes.casestudy_type.includes(currentFilter)
     )
-    setFilteredData(filteredData)
-  }, [currentFilter])
+    setFilteredData(newFilteredData)
+  }, [currentFilter, setFilteredData, worksData])
 
   return (
-    <div className="flex items-center gap-4 font-mono uppercase">
-      <Text>05 Études de cas</Text>
+    <div className="flex flex-wrap items-center gap-4 font-mono uppercase">
+      <Text>{filterDataLength} Études de cas</Text>
       <div className="flex gap-2 overflow-hidden rounded-md bg-neutral-100 font-medium">
         {filtersName.map((filterName) => (
           <button
@@ -138,7 +154,7 @@ function FilterSwitch({
               "px-3 py-2 uppercase"
             )}
           >
-            {filterName}
+            {filterName === "detailles" ? "détaillés" : filterName}
           </button>
         ))}
       </div>

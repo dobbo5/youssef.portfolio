@@ -54,6 +54,9 @@ module.exports = {
       boxShadow: {
         custom: "0 4px 24px rgba(42, 42, 42, 0.04)",
       },
+      transitionTimingFunction: {
+        "out-quint": "cubic-bezier(0.22, 1, 0.36, 1)",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

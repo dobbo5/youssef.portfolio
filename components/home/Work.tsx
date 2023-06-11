@@ -39,5 +39,5 @@ export async function Work() {
     },
   } = response
 
-  return <WorkGrid worksData={worksData} />
+  return <WorkGrid isHeading worksData={worksData} />
 }

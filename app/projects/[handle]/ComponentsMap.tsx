@@ -10,7 +10,7 @@ import { ProjectSection } from "./ProjectSection"
 function ComponentLayoutsKeyDrivers({ key_drivers }) {
   return (
     <ProjectSection title="Key drivers">
-      <ul className="columns-3 gap-4 space-y-4">
+      <ul className="gap-4 space-y-4 sm:columns-2 md:columns-3">
         {key_drivers.map((key_driver) => {
           return (
             <li key={key_driver.title} className="break-inside-avoid">
@@ -34,7 +34,7 @@ function ComponentLayoutsTextsAndImage({ title, contents, image, video }) {
 
   return (
     <ProjectSection title={title}>
-      <div className="grid grid-cols-12 gap-x-16 gap-y-8">
+      <div className="flex w-full grid-cols-12 flex-col gap-8 md:grid lg:gap-x-16">
         {contents ? (
           <ul
             className="flex flex-col gap-8"
@@ -60,13 +60,16 @@ function ComponentLayoutsTextsAndImage({ title, contents, image, video }) {
             gridColumn: `span ${calculatedSpan} / span ${calculatedSpan}`,
           }}
         >
-          <Image
-            className="h-auto w-full"
-            src={imageData.url}
-            alt={title || "screenshot of the project"}
-            width={imageData.width}
-            height={imageData.height}
-          />
+          <div className="w-full rounded-lg bg-neutral-200/20 p-2">
+            <Image
+              className="h-auto w-full rounded-md"
+              src={imageData.url}
+              alt={title || "screenshot of the project"}
+              width={imageData.width}
+              height={imageData.height}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
         </div>
       </div>
     </ProjectSection>
@@ -76,7 +79,7 @@ function ComponentLayoutsTextsAndImage({ title, contents, image, video }) {
 function ComponentLayoutsPersonnas({ Personnas }) {
   return (
     <ProjectSection title="Personnas">
-      <div className="grid grid-cols-3 items-start gap-4">
+      <div className="grid items-start gap-4 md:grid-cols-2 2xl:grid-cols-3">
         {Personnas.map((personna) => {
           const {
             infos: {
@@ -94,7 +97,7 @@ function ComponentLayoutsPersonnas({ Personnas }) {
           return (
             <div
               key={personna.infos.name}
-              className="rounded-md bg-neutral-100 p-8"
+              className="rounded-md bg-neutral-100/25 p-4 sm:p-8"
             >
               <div className="mb-4 grid grid-cols-2 items-end gap-4">
                 <Image
@@ -103,8 +106,9 @@ function ComponentLayoutsPersonnas({ Personnas }) {
                   height={imageData.height}
                   alt={"Photo de " + name}
                   className="aspect-square rounded-sm object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <ul className="text-lg">
+                <ul className="sm:text-lg">
                   <li className="font-medium uppercase">{name}</li>
                   <li>{age}</li>
                   <li>{position}</li>
@@ -119,11 +123,11 @@ function ComponentLayoutsPersonnas({ Personnas }) {
                       className="border-t border-neutral-200 py-4"
                       key={content.title}
                     >
-                      <dl className="grid grid-cols-3 gap-4">
+                      <dl className="grid gap-4 sm:grid-cols-3">
                         <dt className="col-span-1 font-medium">
                           {content.title}
                         </dt>
-                        <dd className="col-span-2">
+                        <dd className="sm:col-span-2">
                           <Text>{content.content}</Text>
                         </dd>
                       </dl>
