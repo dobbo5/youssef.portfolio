@@ -21,7 +21,13 @@ export function Footer() {
               </Button>
             </li>
             <li className="hidden sm:block">
-              <Button variant="inline">Télécharger mon CV</Button>
+              <Button
+                target="_blank"
+                href="/cv-product-builder-youssef-douieb.pdf"
+                variant="inline"
+              >
+                Télécharger mon CV
+              </Button>
             </li>
             <li className="sm:hidden">
               <Button variant="inline">CV</Button>
