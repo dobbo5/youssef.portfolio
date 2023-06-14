@@ -126,7 +126,7 @@ function MyInfos({ my_infos }) {
             </dt>
             <dd className="w-full space-y-10">
               {info.contents.map((content) => (
-                <div>
+                <div key={content.title}>
                   <Text variant="sub-mono" className="mb-1">
                     {content.surtitle}
                   </Text>

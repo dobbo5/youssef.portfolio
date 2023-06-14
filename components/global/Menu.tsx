@@ -19,7 +19,7 @@ export function Menu() {
   const [activeIndex, setActiveIndex] = useState(0)
 
   return (
-    <header className="myflex-col fixed bottom-16 left-1/2 z-50 m-auto translate-x-[-50%] gap-1 rounded font-mono text-xs uppercase tracking-wide sm:bottom-auto sm:top-16 sm:text-base">
+    <header className="myflex-col fixed bottom-16 left-1/2 z-40 m-auto translate-x-[-50%] gap-1 rounded font-mono text-xs uppercase tracking-wide sm:bottom-auto sm:top-16 sm:text-base">
       <m.nav
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}

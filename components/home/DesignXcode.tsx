@@ -12,13 +12,13 @@ export function DesignXcode() {
   const isInView = useInView(ref, { once: true })
 
   return (
-    <Heading as="h3" variant="section-1-large">
+    <Heading as="h3" variant="section-1-large" className="leading-[0.9em]">
       <div ref={ref} className="overflow-hidden">
         <m.span
           className="inline-block"
           initial={{ y: 250 }}
           animate={{ y: isInView ? 0 : 250 }}
-          transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.6 }}
+          transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.2 }}
         >
           Design
         </m.span>
@@ -28,7 +28,7 @@ export function DesignXcode() {
           className="inline-block text-primary-600"
           initial={{ y: -250 }}
           animate={{ y: isInView ? 0 : -250 }}
-          transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.6 }}
+          transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.2 }}
         >
           X
         </m.span>
@@ -36,7 +36,7 @@ export function DesignXcode() {
           className="inline-block"
           initial={{ y: -250 }}
           animate={{ y: isInView ? 0 : -250 }}
-          transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.6 }}
+          transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.2 }}
         >
           CODE
         </m.span>

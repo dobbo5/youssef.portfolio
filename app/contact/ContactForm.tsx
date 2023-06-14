@@ -18,10 +18,7 @@ export function ContactForm() {
   const [error, setError] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     firstName: "",
-    company: "",
     email: "",
-    tel: "",
-    object: "",
     message: "",
   })
 
@@ -34,12 +31,7 @@ export function ContactForm() {
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setError(null)
-    if (
-      !formData.firstName ||
-      !formData.email ||
-      !formData.object ||
-      !formData.message
-    ) {
+    if (!formData.firstName || !formData.email || !formData.message) {
       setError("Veuillez remplir tous les champs requis.")
       return
     }
@@ -121,17 +113,7 @@ export function ContactForm() {
               value={formData.firstName}
               onChange={handleChange}
             />
-            <Input
-              label="Entreprise (Optionnel)"
-              placeholder="ex : Acme Corp"
-              id="company"
-              name="company"
-              type="text"
-              aria-label="company"
-              autoComplete="company"
-              value={formData.company}
-              onChange={handleChange}
-            />
+
             <Input
               label="Email"
               placeholder="ex : email@gmail.com"
@@ -144,29 +126,6 @@ export function ContactForm() {
               value={formData.email}
               onChange={handleChange}
             />
-            <Input
-              label="Téléphone (Optionnel)"
-              placeholder="ex : +33762645423"
-              id="tel"
-              name="tel"
-              type="tel"
-              aria-label="téléphone"
-              autoComplete="tel-national"
-              value={formData.tel}
-              onChange={handleChange}
-            />
-            <Input
-              label="Objet"
-              placeholder="ex : Recrutement, mission freelance..."
-              className="sm:col-span-2"
-              id="object"
-              name="object"
-              aria-label="object"
-              required
-              value={formData.object}
-              onChange={handleChange}
-            />
-
             <Input
               as="textarea"
               label="Message"

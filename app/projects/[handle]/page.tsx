@@ -150,8 +150,6 @@ function Intro({ introData }) {
     },
   } = introData
 
-  console.log(problems_solutions.length > 0)
-
   return (
     <section className="grid grid-cols-1 gap-16 sm:grid-cols-4">
       <Image
@@ -184,7 +182,7 @@ function Intro({ introData }) {
         </Heading>
         <ul className="flex flex-col gap-4">
           {livrables.map((livrable) => (
-            <li>
+            <li key={livrable.text}>
               <Tag>{livrable.text}</Tag>
             </li>
           ))}
@@ -218,7 +216,10 @@ function TechStack({ techStackData }) {
       </Heading>
       <ul className="grid grid-cols-3 gap-4 sm:grid-cols-4 2xl:grid-cols-5">
         {techStackData.map(({ title, image }) => (
-          <li className="flex flex-col items-center justify-center gap-3 rounded-md border border-neutral-100 p-4">
+          <li
+            key={title}
+            className="flex flex-col items-center justify-center gap-3 rounded-md border border-neutral-100 p-4"
+          >
             <Image
               src={image.data.attributes.url}
               alt={title}

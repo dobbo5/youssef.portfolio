@@ -15,21 +15,19 @@ export default async function handler(
   const client = mailgun.client({ username: "api", key: API_KEY })
 
   const {
-    formData: { firstName, email, message, tel, object, company },
+    formData: { firstName, email, message },
   } = req.body
 
   const messageData = {
     from: email,
     to: "youssefdouieb@hotmail.com",
-    subject: object,
+    subject: "Nouveau message de votre portfolio",
     text: `
     Hello,
 
     Tu as reçus un message de: ${firstName} 
 
     Email : ${email}
-    Tél: ${tel}
-    Entreprise: ${company}
 
     ----------------------------
 
