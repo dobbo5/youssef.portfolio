@@ -24,10 +24,6 @@ function ComponentLayoutsKeyDrivers({ key_drivers }) {
 }
 
 function ComponentLayoutsTextsAndImage({ title, contents, image }) {
-  const {
-    data: { attributes: imageData },
-  } = image
-
   let calculatedSpan = 12
 
   if (contents) {
@@ -57,14 +53,16 @@ function ComponentLayoutsTextsAndImage({ title, contents, image }) {
           </ul>
         ) : null}
 
-        <div
-          className="overflow-hidden rounded-md"
-          style={{
-            gridColumn: `span ${calculatedSpan} / span ${calculatedSpan}`,
-          }}
-        >
-          <MediaRender imageData={imageData} />
-        </div>
+        {image?.data?.attributes && (
+          <div
+            className="overflow-hidden rounded-md"
+            style={{
+              gridColumn: `span ${calculatedSpan} / span ${calculatedSpan}`,
+            }}
+          >
+            <MediaRender imageData={image?.data?.attributes} />
+          </div>
+        )}
       </div>
     </ProjectSection>
   )

@@ -150,6 +150,8 @@ function Intro({ introData }) {
     },
   } = introData
 
+  console.log(problems_solutions.length > 0)
+
   return (
     <section className="grid grid-cols-1 gap-16 sm:grid-cols-4">
       <Image
@@ -189,18 +191,21 @@ function Intro({ introData }) {
         </ul>
       </div>
       {tech_stack.length > 0 && <TechStack techStackData={tech_stack} />}
-      <div className="grid grid-cols-1 gap-x-16 border-t border-neutral-200 sm:col-span-4 md:grid-cols-4">
-        <Heading
-          as="h3"
-          variant="section-1-medium"
-          className="col-span-2 mt-8 uppercase"
-        >
-          Problèmes + Solutions
-        </Heading>
-        <div className="col-span-2">
-          <Accordion data={problems_solutions} />
+      {problems_solutions.length > 0 && (
+        <div className="grid grid-cols-1 gap-x-16 border-t border-neutral-200 sm:col-span-4 md:grid-cols-4">
+          <Heading
+            as="h3"
+            variant="section-1-medium"
+            className="col-span-2 mt-8 uppercase"
+          >
+            Problèmes + Solutions
+          </Heading>
+
+          <div className="col-span-2">
+            <Accordion data={problems_solutions} />
+          </div>
         </div>
-      </div>
+      )}
     </section>
   )
 }

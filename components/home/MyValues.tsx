@@ -60,7 +60,7 @@ export async function MyValues() {
           <div key={`${value.title}-${index}`}>
             <dl className="flex flex-col gap-y-4 py-8 sm:flex-row sm:py-16">
               <dt className="w-full">
-                <Heading as="h5" variant="section-2">
+                <Heading as="h5" variant="section-2" className="max-w-lg">
                   {value.title}
                 </Heading>
               </dt>

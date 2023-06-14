@@ -141,7 +141,7 @@ function FilterSwitch({
 
   return (
     <div className="flex flex-wrap items-center gap-4 font-mono uppercase">
-      <Text>{filterDataLength} Études de cas</Text>
+      <Text>{filterDataLength} Case study</Text>
       <div className="flex gap-2 overflow-hidden rounded-md bg-neutral-100 font-medium">
         {filtersName.map((filterName) => (
           <button
