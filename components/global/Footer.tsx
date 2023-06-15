@@ -29,12 +29,14 @@ export function Footer() {
                 Télécharger mon CV
               </Button>
             </li>
-            <li
-              target="_blank"
-              href="/cv-product-builder-youssef-douieb.pdf"
-              className="sm:hidden"
-            >
-              <Button variant="inline">CV</Button>
+            <li className="sm:hidden">
+              <Button
+                target="_blank"
+                href="/cv-product-builder-youssef-douieb.pdf"
+                variant="inline"
+              >
+                CV
+              </Button>
             </li>
           </ul>
           <p className="font-mono uppercase text-neutral-500">
