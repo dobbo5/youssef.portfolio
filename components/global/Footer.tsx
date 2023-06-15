@@ -2,7 +2,7 @@ import { Button } from "../kit/Button"
 
 export function Footer() {
   return (
-    <footer className="mt-32 flex w-full justify-center max-sm:pb-32">
+    <footer className="mt-32 flex w-full justify-center max-md:pb-32">
       <div className="w-full max-w-[calc(20rem+60vw)] px-[clamp(1rem,5vw,4rem)]">
         <div className="flex w-full flex-wrap justify-between gap-x-32 gap-y-8 border-t border-neutral-100 py-8">
           <ul className="flex w-full justify-between sm:w-auto sm:flex-wrap sm:gap-x-16 sm:gap-y-4">
