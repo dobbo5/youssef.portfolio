@@ -12,7 +12,7 @@ export function DesignXcode() {
   const isInView = useInView(ref, { once: true })
 
   return (
-    <Heading as="h3" variant="section-1-large" className="leading-[0.9em]">
+    <Heading as="h3" variant="section-1-large" className="leading-[0.8em]">
       <div ref={ref} className="overflow-hidden">
         <m.span
           className="inline-block"
