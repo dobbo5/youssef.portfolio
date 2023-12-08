@@ -23,7 +23,7 @@ export function Heading({
   const baseStyle = "leading-tight tracking-wide font-medium"
 
   const variants = {
-    hero: "text-[clamp(3rem,calc(4vw+2rem),8rem)] leading-none",
+    hero: "text-[clamp(2rem,calc(4vw+1.25rem),8rem)] leading-[1.1em]",
     "section-1-large":
       "text-[clamp(2rem,calc(8vw+1rem),16rem)] tracking-normal leading-[1.1em] uppercase pt-[clamp(3rem,calc(12vw),24rem)] pb-[clamp(2rem,calc(8vw),16rem)] text-center",
     "section-1-medium": "text-4xl sm:text-6xl uppercase",

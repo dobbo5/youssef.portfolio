@@ -20,7 +20,7 @@ export default async function handler(
 
   const messageData = {
     from: email,
-    to: "youssefdouieb@hotmail.com",
+    to: "youssefdouieb.work@gmail.com",
     subject: "Nouveau message de votre portfolio",
     text: `
     Hello,

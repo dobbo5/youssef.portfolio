@@ -43,11 +43,11 @@ export async function Hero() {
   } = response
 
   return (
-    <section className="flex min-h-[90vh] flex-col justify-center gap-4">
+    <section className="mt-[clamp(1rem,5vw,4rem)] flex min-h-screen flex-col gap-4 sm:mt-0 sm:min-h-[80vh] sm:justify-center">
       <Heading as="h2" variant="hero">
         Salut ! Je suis
         <ProfileBubble />
-        product builder en Alternance et en Freelance.
+        Product Designer chez Source
       </Heading>
       <Text variant="paragraph-large">{Description}</Text>
     </section>

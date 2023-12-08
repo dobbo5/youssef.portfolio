@@ -23,9 +23,9 @@ export function DesignXcode() {
           Design
         </m.span>
       </div>
-      <div className="overflow-hidden">
+      <div className="overflow-hidden leading-none">
         <m.span
-          className="inline-block text-primary-600"
+          className="inline-block  text-primary-600"
           initial={{ y: -250 }}
           animate={{ y: isInView ? 0 : -250 }}
           transition={{ duration: 0.6, ease: easeOutCirc, delay: 0.2 }}

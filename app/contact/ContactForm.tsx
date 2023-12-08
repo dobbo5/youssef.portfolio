@@ -152,7 +152,7 @@ export function ContactForm() {
                 href="mailto:youssefdouieb@hotmail.com"
                 className="underline hover:text-primary-600"
               >
-                YoussefDouieb@hotmail.com
+                youssefdouieb.work@gmail.com
               </Link>
             </Text>
           </m.form>
