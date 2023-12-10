@@ -149,7 +149,7 @@ export function ContactForm() {
             <Text variant="sub-mono" className="justify-self-end">
               Email envoyé à{" "}
               <Link
-                href="mailto:youssefdouieb@hotmail.com"
+                href="mailto:youssefdouieb.work@gmail.com"
                 className="underline hover:text-primary-600"
               >
                 youssefdouieb.work@gmail.com
