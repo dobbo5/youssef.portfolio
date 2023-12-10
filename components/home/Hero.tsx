@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { gql } from "@apollo/client"
 
 import { getDataFromGql } from "@/lib/getDataFromGql"
@@ -47,7 +48,14 @@ export async function Hero() {
       <Heading as="h2" variant="hero">
         Salut ! Je suis
         <ProfileBubble />
-        Product Designer chez Source
+        Product Designer chez{" "}
+        <Link
+          target="_blank"
+          href="https://source.paris/"
+          className="link-hover"
+        >
+          Source
+        </Link>
       </Heading>
       <Text variant="paragraph-large">{Description}</Text>
     </section>

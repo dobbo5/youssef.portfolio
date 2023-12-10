@@ -11,3 +11,27 @@
   background-color: #5867e1;
   color: #f7f7f7;
 }
+
+.link-hover {
+  position: relative;
+  text-decoration: underline;
+  text-decoration-thickness: 0.07em;
+  text-underline-offset: 0.15em;
+  overflow: hidden;
+  transition: clip-path 128ms cubic-bezier(0, 0.55, 0.45, 1);
+}
+
+.link-hover:hover::before {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.link-hover::before {
+  position: absolute;
+  content: "Source";
+  color: #5867e1;
+  text-decoration: inherit;
+  text-decoration-thickness: inherit;
+  text-underline-offset: inherit;
+  clip-path: polygon(0 0, 0 0, 0% 100%, 0 100%);
+  transition: clip-path 128ms cubic-bezier(0, 0.55, 0.45, 1);
+}
